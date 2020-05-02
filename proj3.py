@@ -3,6 +3,10 @@
 
 import random
 
+INPUT_FILE1 = "easywords.txt"
+INPUT_FILE2 = "mediumwords.txt"
+INPUT_FILE3 = "hardwords.txt"
+
 def ask(word, result, notGuessed):
     guess = input()
     if guess == None or len(guess) != 1 or (guess in result) or (guess in notGuessed):
@@ -15,8 +19,6 @@ def ask(word, result, notGuessed):
         i += 1
     return guess, correct
 
-words = 'foo baa wee mee'.split()
-
 selects = []
 
 print('Welcome to Hangman !')
@@ -28,14 +30,17 @@ while True:
 
     if userInput == "e":
         userLevel = 8
+        inFile = open(INPUT_FILE1,'r')
         print ('Easy Level Chosen')
         break
     elif userInput == "m":
         userLevel = 6
+        inFile = open(INPUT_FILE2,'r')
         print ('Medium Level Chosen')
         break
     elif userInput == "h":
         userLevel = 4
+        inFile = open(INPUT_FILE3,'r')
         print ('Hard Level Chosen')
         break
     elif userInput == "x":
@@ -45,7 +50,11 @@ while True:
     else:
         print ('Wrong Choice Chosen')
 
-word = list(words[random.randint(0, len(words) - 1)])
+line = inFile.readline()
+words = line.split()
+
+word = list(random.choice(words))
+#print (word)
 
 result = list('_' * len(word))
 
@@ -65,14 +74,14 @@ while i < userLevel-1:
         continue
     print(''.join(result))
     if result == word:
-        print('You guessed it... !')
+        print('Good job!!.. You guessed it... !')
         success = True
         break
     if not correct:
         notGuessed.append(guess)
         i+=1
     print('incorrect guesses so far -> ', notGuessed)
-    #print ('i is ' + str(i) )
+    print ('Remaining Lives -> ' + str(userLevel-i-1) )
 
 if not success:
     #print('Word is - '.join(word))
