@@ -34,17 +34,17 @@ while True:
         print ('Easy Level Chosen')
         break
     elif userInput == "m":
-        userLevel = 6
+        userLevel = 8
         inFile = open(INPUT_FILE2,'r')
         print ('Medium Level Chosen')
         break
     elif userInput == "h":
-        userLevel = 4
+        userLevel = 7
         inFile = open(INPUT_FILE3,'r')
         print ('Hard Level Chosen')
         break
     elif userInput == "x":
-        userLevel = 4
+        userLevel = 6
         print ('Exit Chosen')
         exit (0)
     else:
